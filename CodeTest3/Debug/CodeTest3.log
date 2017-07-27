@@ -1,0 +1,5 @@
+﻿  main3.cpp
+c:\visualstudio\codetest\codetest3\main3.cpp(29): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\visualstudio\codetest\codetest3\main3.cpp(33): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  CodeTest3.vcxproj -> C:\VisualStudio\CodeTest\Debug\CodeTest3.exe
+  CodeTest3.vcxproj -> C:\VisualStudio\CodeTest\Debug\CodeTest3.pdb (Partial PDB)
