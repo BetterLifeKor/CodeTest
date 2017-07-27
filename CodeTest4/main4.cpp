@@ -23,7 +23,7 @@ void search(vector<int>& edible, int chosen) {
 	while (first < n && edible[first] > 0) ++first;
 
 	if (first == n) { 
-		best = chosen;// < best ? chosen : best;
+		best = chosen;
 		return; 
 	}
 	FOR(i, canEat[first].size()) {

@@ -1,27 +1,32 @@
 #include <iostream>
-#include <vector>
-#include <map>
 #include <string>
-#include <algorithm>
-
-#define MAX_N 10000
-#define MAX_M 10000
-#define MAX_C 10000
-
-#define FOR(i,n) for( int i = 0 ; i < n ; i++)
-
 using namespace std;
 
-vector<int> myVector;
-map<int, string> myMap;
-
 int main() {
-	int T, N;
+	string s;
+	int T, a, b;
+	int flag = 0;
+	cin >> s;
 	cin >> T;
 	while (T--) {
-		cin >> N;
-		FOR(i, N) {
-
+		cin >> a >> b;
+		if (a > b) {
+			int temp = b;
+			b = a;
+			a = temp;
+		}
+		flag = 0;
+		for (int i = a+1; i <= b; i++) {
+			if (s[i] != s[i - 1]) {
+				flag = 1;
+				break;
+			}
+		}
+		if (flag == 0) {
+			cout << "Yes" << endl;
+		}
+		else {
+			cout << "No" << endl;
 		}
 	}
 	return 0;
