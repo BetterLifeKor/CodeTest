@@ -4,6 +4,13 @@ using namespace std;
 
 int main() {
 	string s;
+	for (int i = 1; i <= s.size(); i++) {
+		if (s[i] != s[i - 1]) {
+			break;
+		}
+	}
+
+
 	int T, a, b;
 	int flag = 0;
 	cin >> s;
