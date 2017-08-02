@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="input1.in">
+    <None Include="input1.txt">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="output1.out">
+    <None Include="output1.txt">
       <Filter>소스 파일</Filter>
     </None>
   </ItemGroup>
