@@ -1,56 +1,49 @@
+// Baekjoon Problem. 
+// No. 10844
+// type : DP
+
 #include <iostream>
 #include <vector>
-#include <map>
 
-//#define FOR(i,n) for( int i = 0 ; i < n ; i++)
-
-
+#define OUTPUT_NUM 1000000000
 using namespace std;
 
-int getZeroPeriod(int n) {
-	return n * (n + 1) / 2;
-}
-int getSubArray(int a, int b) {
-	return a * b;
+vector<vector<int>> myCache(11, vector<int>(101, 0));
+
+void makeStairNum(int n, int number, int* result) {
+	if (number < 0 || number > 9 || n < 1) {
+		return;
+	}
+	if (number == 9 && myCache[number - 1][n - 1] != 0) {
+		myCache[number][n] = (myCache[number - 1][n - 1]) % OUTPUT_NUM;
+		*result = (*result + myCache[number - 1][n - 1]) % OUTPUT_NUM;
+		return;
+	}else if (number == 0 && myCache[number + 1][n - 1] != 0) {
+		myCache[number][n] = (myCache[number + 1][n - 1]) % OUTPUT_NUM;
+		*result = (*result + myCache[number + 1][n - 1]) % OUTPUT_NUM;
+		return;
+	}
+	else if (myCache[number + 1][n - 1] != 0 && myCache[number - 1][n - 1] != 0) {
+		myCache[number][n] = (myCache[number - 1][n - 1] + myCache[number + 1][n - 1]) % OUTPUT_NUM;
+		*result = (*result + myCache[number][n]) % OUTPUT_NUM;;
+		return;
+	}
+	if (n == 1) {
+		myCache[number][n] = 1;
+		*result = (*result + 1) % OUTPUT_NUM;;;
+		return;
+	}
+	makeStairNum(n - 1, number + 1, result);
+	makeStairNum(n - 1, number - 1, result);
+
 }
 
-int solve(int x, int y) {
-	return x + y;
-}
-
-class myClass {
-public:
-	int size = 0;
-	vector<int> myVector;
-};
-
-map<int, myClass > myMap;
 int main() {
-	int n;
-	int q;
-	cin >> n >> q;
-	vector<int> arr(n);
-	for (int arr_i = 0; arr_i < n; arr_i++) {
-		cin >> arr[arr_i];
-		if (myMap[arr[arr_i]].size == 0) {
-			vector<int> temp_vector(8000);
-			temp_vector[0] = arr_i;
-			myMap[arr[arr_i]].myVector = temp_vector;
-			myMap[arr[arr_i]].size++;
-		}
-		else {
-			int pos = myMap[arr[arr_i]].size;
-			myMap[arr[arr_i]].myVector[pos] = arr_i;
-			myMap[arr[arr_i]].size++;
-		}
+	int n, number=0, result=0;
+	scanf("%d", &n);
+	for (int i = 1; i < 10; i++) {
+		makeStairNum(n, i, &result);
 	}
-	for (int a0 = 0; a0 < q; a0++) {
-		int x;
-		int y;
-		cin >> x >> y;
-		// Write Your Code Here
-		cout << solve(x, y) << endl;
-		
-	}
+	printf("%d", result % OUTPUT_NUM);
 	return 0;
 }
