@@ -19,8 +19,4 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="input5.txt" />
-    <Text Include="output5.txt" />
-  </ItemGroup>
 </Project>
