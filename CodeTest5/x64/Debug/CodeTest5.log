@@ -1,3 +1,2 @@
 ﻿  main5.cpp
-  CodeTest5.vcxproj -> C:\Github\CodeTest\x64\Debug\CodeTest5.exe
-  CodeTest5.vcxproj -> C:\Github\CodeTest\x64\Debug\CodeTest5.pdb (Partial PDB)
+LINK : fatal error LNK1561: 진입점이 정의되어야 합니다.
