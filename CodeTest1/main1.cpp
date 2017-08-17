@@ -1,136 +1,82 @@
-// Problem Name : KAKURO 2
-// 알고스팟 11.7
-// 문제유형 : 구현
+// Date   : 2017.8.18.
+// Title  : LGE CodeJam 1
+// Editor by Jihoon Kim
+
+//_CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
-#include <algorithm>
+#include <string>
 #include <vector>
+#include <queue>
+#include <algorithm>
 
-#define MAX_T 50
-#define MAX_N 20
-#define MAX_List 1000
-#define FOR(i,n) for(int i = 0; i < n; i++)
+#define FOR(i,n) for(int i =0; i<n; i++)
+
 using namespace std;
 
-vector<vector<int>> myList(MAX_List, vector<int>(4, 0));
+int MIN(int a, int b) { return a < b ? a : b; }
+int MAX(int a, int b) { return a > b ? a : b; }
+int MAX3(int a, int b, int c) { return MAX(MAX(a, b), c); }
+int MIN3(int a, int b, int c) { return MIN(MIN(a, b), c); }
 
-int solve(vector<vector<int>> myMatrix, int n) {
-	int nList = -1;
-	int tempSum = 0;
-	bool flagSum = false;
-	FOR(i, n) {
-		tempSum = 0;
-		flagSum = false;
-		FOR(j, n) {
-			if (myMatrix[i][j] == 0 ) {
-				flagSum = false;
-				tempSum = 0;
-			} else if (~flagSum) {
-				if (myMatrix[i][j-1] == 0) {
-					nList = nList + 1;
-					myList[nList][0] = i + 1;
-					myList[nList][1] = j;
-					myList[nList][2] = 0;
-				}
-				flagSum = true;
-			}
-			if (flagSum) {
-				tempSum = tempSum + myMatrix[i][j];
-				myList[nList][3] = tempSum;
-			}
-		}
+void displayV(vector<int> v) { for (auto a : v) printf("%d\n", a); }
+void displayV2(vector<vector<int>> v) {
+	int n_r = v.size(); int n_c = v[0].size();
+	for (int i = 0; i < n_r; i++) {
+		for (int j = 0; j < n_c; j++) { printf("%d\t", v[i][j]); }
+		printf("\n");
 	}
-	FOR(j, n) {
-		tempSum = 0;
-		flagSum = false;
-		FOR(i, n) {
-			if (myMatrix[i][j] == 0) {
-				flagSum = false;
-				tempSum = 0;
-			}
-			else if (~flagSum) {
-				if (myMatrix[i-1][j] == 0) {
-					nList = nList + 1;
-					myList[nList][0] = i;
-					myList[nList][1] = j+1;
-					myList[nList][2] = 1;
-				}
-				flagSum = true;
-			}
-			if (flagSum) {
-				tempSum = tempSum + myMatrix[i][j];
-				myList[nList][3] = tempSum;
-			}
-		}
+}
+void displayVS(vector<string> v) { for (auto a : v) printf("%s", a.c_str()); printf("\n"); }
+void displayQ(queue<int> q) {
+	while (!q.empty()) {
+		printf("%d\n", q.front());
+		q.pop();
 	}
-	return nList;
 }
 
-bool compare1(const vector<int> &a, const vector<int> &b) {
-	return a[2] < b[2];
+bool find_Q(queue<int> Q, int value) {
+	bool flag = false;
+	while (!Q.empty()) {
+		if (Q.front() == value)
+		{
+			flag = true; break;
+		}
+		Q.pop();
+	}
+	return flag;
 }
-bool compare2(const vector<int> &a, const vector<int> &b) {
-	return a[0] < b[0];
+int find_Q2(queue<int> Q, queue<int> Q2, int value) {
+	while (!Q.empty()) {
+		if (Q.front() == value)	break;
+		Q.pop(); Q2.pop();
+	}
+	return Q2.front();
 }
-bool compare3(const vector<int> &a, const vector<int> &b) {
-	return a[1] < b[1];
+int count_Q(queue<int> Q, int value) {
+	int count = 0;
+	while (!Q.empty()) {
+		if (Q.front() == value) count++;
+		Q.pop();
+	}
+	return count;
 }
+
+vector<int> myV; // myV = vector<int>(num_r,0)
+vector<int> myD; // myD = vector<int>(num_r,0)
+
+vector<vector<int>> myV2; // myV2 = vector<vector<int>>(num_r,vector<int>(num_c,0))
+vector<vector<int>> myD2; // myD2 = vector<vector<int>>(num_r,vector<int>(num_c,0))
+
+queue<int> myQ;
 
 int main() {
-	int t, n, temp, nList;
+	int t, n;
+
 	scanf("%d", &t);
-	printf("%d\n", t);
 	while (t--) {
 		scanf("%d", &n);
 		printf("%d\n", n);
-		vector<vector<int>> myMatrix(n, vector<int>(n, 0));
-		FOR(i, n) {
-			FOR(j, n) {
-				scanf("%d", &temp);
-				myMatrix[i][j] = temp;
-				if (temp == 0) {
-					printf("0");
-				}
-				else {
-					printf("1");
-				}
-				if (j == n - 1) {
-					printf("\n");
-				}
-				else {
-					printf(" ");
-				}
-			}
-		}
-
-		nList = solve(myMatrix, n);
-		printf("%d\n", nList + 1);
-
-		sort(myList.begin(), myList.begin() + nList + 1, compare1);	
-		
-		int index;
-		index = 0;
-		FOR(i, nList) {
-			if (myList[i][2] != myList[i + 1][2]) {
-				sort(myList.begin() + index, myList.begin() + i + 1, compare2);
-				index = i+1;
-			}
-			if( i == nList - 1)	sort(myList.begin() + index, myList.begin() + nList+1, compare2);
-		}
-		
-		index = 0;
-		FOR(i, nList) {
-			if (myList[i][0] != myList[i + 1][0]) {
-				sort(myList.begin() + index, myList.begin() + i+1, compare3);
-				index = i + 1;
-			}
-			if (i == nList - 1)	sort(myList.begin() + index, myList.begin() + nList+1, compare3);
-		}
-		FOR(i, nList) {
-			printf("%d %d %d %d\n", myList[i][0], myList[i][1], myList[i][2], myList[i][3]);
-		}
-		printf("%d %d %d %d", myList[nList][0], myList[nList][1], myList[nList][2], myList[nList][3]);
 	}
-	
 	return 0;
 }
