@@ -20,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="input.in">
+    <None Include="input_1.in">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="output.out">
+    <None Include="output_1.out">
       <Filter>소스 파일</Filter>
     </None>
   </ItemGroup>

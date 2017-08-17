@@ -121,8 +121,8 @@
     <ClCompile Include="main1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="input.in" />
-    <None Include="output.out" />
+    <None Include="input_1.in" />
+    <None Include="output_1.out" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

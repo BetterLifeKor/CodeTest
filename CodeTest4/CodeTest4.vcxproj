@@ -116,6 +116,10 @@
   <ItemGroup>
     <ClCompile Include="main4.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="input_4.in" />
+    <None Include="output_4.out" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
