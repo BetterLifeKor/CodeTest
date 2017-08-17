@@ -15,14 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="input4.in">
-      <Filter>소스 파일</Filter>
-    </None>
-    <None Include="output4.out">
-      <Filter>소스 파일</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main4.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
