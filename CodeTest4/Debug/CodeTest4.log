@@ -1,6 +1,0 @@
-﻿  main4.cpp
-c:\visualstudio\codetest\codetest4\main4.cpp(29): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\visualstudio\codetest\codetest4\main4.cpp(31): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\visualstudio\codetest\codetest4\main4.cpp(35): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  CodeTest4.vcxproj -> C:\VisualStudio\CodeTest\Debug\CodeTest4.exe
-  CodeTest4.vcxproj -> C:\VisualStudio\CodeTest\Debug\CodeTest4.pdb (Partial PDB)
